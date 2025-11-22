@@ -459,10 +459,10 @@ export const sendEmailVerificationOtp = async (req, res) => {
       message: "OTP sent successfully. Please check your email.",
     });
   } catch (error) {
-    console.log("Send Email Verification OTP Error:", error.message);
-    res.status(500).json({
-      success: false,
-      message: "Internal Server Error",
-    });
+    console.error("❌ Registration Error:", error);
+  return res.status(500).json({
+    success: false,
+    message: error.message || "Server error during registration"
+  });
   }
 };
