@@ -19,7 +19,7 @@ const Register = ({ toggleFunction }) => {
     setLoading(true); // show loading spinner
 
     try {
-      const res = await axios.post(`https://mern-authentication-rj.onrender.comapi/auth/register`, formData);
+      const res = await axios.post(`https://rj-mern-auth.onrender.com/api/auth/register`, formData);
       alert(res.data.message);
 
       if (res.data.success) {

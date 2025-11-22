@@ -22,7 +22,7 @@ const VerifyOtpToResetPassword = () => {
 
       const finalOtp = otp.join("");
       const res = await axios.post(
-        `https://mern-authentication-rj.onrender.com/api/auth/verify-reset-otp`,
+        `https://rj-mern-auth.onrender.com/api/auth/verify-reset-otp`,
         { email: userEmail, passwordResetOtp: finalOtp }
       );
 

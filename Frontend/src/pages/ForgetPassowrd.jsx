@@ -19,7 +19,7 @@ const ForgetPassword = () => {
       setLoading(true); // start loader
 
       const res = await axios.post(
-        `https://mern-authentication-rj.onrender.com/api/auth/send-reset-otp`,
+        `https://rj-mern-auth.onrender.com/api/auth/send-reset-otp`,
         { email }
       );
 
