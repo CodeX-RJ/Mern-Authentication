@@ -17,7 +17,7 @@ const VerifyEmail = () => {
       setLoading(true); // Start loader
 
       const res = await axios.post(
-        `http://localhost:4000/api/auth/verify-email-existing-user`,
+        `https://mern-authentication-rj.onrender.com/api/auth/verify-email-existing-user`,
         { email }
       );
 

@@ -21,7 +21,7 @@ const VerifyEmailOtp = () => {
 
       const finalOtp = otp.join("");
       const res = await axios.post(
-        `http://localhost:4000/api/auth/verify-email`,
+        `https://mern-authentication-rj.onrender.com/api/auth/verify-email`,
         { email: userEmail, verificationOtp: finalOtp }
       );
       console.log('useremail:', userEmail);

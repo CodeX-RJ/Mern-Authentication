@@ -23,7 +23,7 @@ const ChangePassword = () => {
       setLoading(true); // start spinner
 
       const res = await axios.post(
-        `http://localhost:4000/api/auth/reset-password`,
+        `https://mern-authentication-rj.onrender.com/api/auth/reset-password`,
         {
           email: userEmail,
           password: password,

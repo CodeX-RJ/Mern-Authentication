@@ -17,7 +17,7 @@ const Login = ({ toggleFunction }) => {
     setLoading(true); // start loader
 
     try {
-      const res = await axios.post(`http://localhost:4000/api/auth/login`, {
+      const res = await axios.post(`https://mern-authentication-rj.onrender.com/api/auth/login`, {
         email: formData.email,
         password: formData.password,
       });
