@@ -1,0 +1,12 @@
+# Node modules (for both frontend & backend)
+
+Frontend/node_modules
+Fackend/node_modules
+
+# Build files
+Frontend/dist
+Fackend/build
+
+# Environment variables
+Frontend/.env
+Backend/.env
