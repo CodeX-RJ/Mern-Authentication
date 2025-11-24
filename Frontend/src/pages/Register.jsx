@@ -18,7 +18,7 @@ const Register = ({ toggleFunction }) => {
     setLoading(true);
 
     try {
-      const res = await axios.post(`https://rj-mern-auth.onrender.com/api/auth/register`, formData);
+      const res = await axios.post(`https://rj-mern-authentication.onrender.com/api/auth/register`, formData);
       alert(res.data.message);
 
       if (res.data.success) {

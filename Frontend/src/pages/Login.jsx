@@ -17,7 +17,7 @@ const Login = ({ toggleFunction }) => {
 
     try {
       const res = await axios.post(
-        "https://rj-mern-auth.onrender.com/api/auth/login",
+        "https://rj-mern-authentication.onrender.com/api/auth/login",
         formData
       );
       alert(res.data.message);
