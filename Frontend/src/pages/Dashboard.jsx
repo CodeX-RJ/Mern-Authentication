@@ -9,7 +9,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axios.get("https://rj-mern-auth.onrender.com/api/auth/me", {
+        const res = await axios.get("https://rj-mern-authentication.onrender.com/api/auth/me", {
           withCredentials: true,
         });
 
@@ -28,7 +28,7 @@ const Dashboard = () => {
   }, [navigate]);
 
   const handleLogout = async () => {
-    await axios.post("https://rj-mern-auth.onrender.com/api/auth/logout", {}, { withCredentials: true });
+    await axios.post("https://rj-mern-authentication.onrender.com/api/auth/logout", {}, { withCredentials: true });
     navigate("/");
   };
 
