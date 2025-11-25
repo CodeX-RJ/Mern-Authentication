@@ -11,7 +11,7 @@ const Navbar = ({toggleFunction}) => {
     <nav className="bg-white shadow-md fixed top-0 left-0 w-full z-50">
       {loggedIn? <div> 
         
-       
+       user logged in
 
       </div> 
       : 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -7,6 +7,7 @@ const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const navigate = useNavigate();
+  const { userEmail, setUserEmail, loggedIn, setLoggedIn, userMe, setUserMe } = useContext(UserEmailContext);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -34,12 +35,17 @@ const Dashboard = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.post(
+      const res= await axios.post(
         "https://rj-mern-authentication.onrender.com/api/auth/logout",
         {},
         { withCredentials: true }
       );
-      navigate("/");
+      if(res.data.success){
+        setUserEmail('');
+        setLoggedIn(false);
+        setUserMe(null);
+        navigate("/");
+      }
     } catch (error) {
       console.error("Logout failed:", error);
     }

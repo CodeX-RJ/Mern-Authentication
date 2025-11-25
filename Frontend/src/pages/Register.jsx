@@ -7,7 +7,7 @@ const Register = ({ toggleFunction }) => {
   const [formData, setFormData] = useState({ name: "", email: "", password: "" });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { setUserEmail } = useContext(UserEmailContext);
+  const { userEmail, setUserEmail, loggedIn, setLoggedIn, userMe, setUserMe } = useContext(UserEmailContext);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

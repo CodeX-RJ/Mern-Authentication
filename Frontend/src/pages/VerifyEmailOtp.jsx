@@ -7,7 +7,7 @@ const VerifyEmailOtp = () => {
   const [otp, setOtp] = useState(new Array(6).fill(""));
   const [loading, setLoading] = useState(false);
 
-  const { userEmail } = useContext(UserEmailContext);
+  const { userEmail, setUserEmail, loggedIn, setLoggedIn, userMe, setUserMe } = useContext(UserEmailContext);
   const inputRefs = useRef([]);
   const navigate = useNavigate();
 
@@ -41,7 +41,7 @@ const VerifyEmailOtp = () => {
       );
 
       alert(res.data.message);
-      if (res.data.success) navigate("/dashboard");
+      if (res.data.success){ setLoggedIn(true); navigate("/dashboard"), setUserMe(res.data.user);}  
     } catch (error) {
       console.log(error);
       alert("Something went wrong");

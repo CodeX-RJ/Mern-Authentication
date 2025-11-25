@@ -24,7 +24,7 @@ const Login = ({ toggleFunction }) => {
       );
       alert(res.data.message);
 
-      if (res.data.success){ setLoggedIn(true); navigate("/dashboard");}  
+      if (res.data.success){ setLoggedIn(true); navigate("/dashboard"), setUserMe(res.data.user);}  
     } catch (error) {
       console.log(error);
       alert("Login failed. Please try again.");
