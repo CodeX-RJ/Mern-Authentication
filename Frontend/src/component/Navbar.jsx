@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { LogIn, UserPlus, Menu, X, Home } from "lucide-react";
 import {Link} from 'react-router-dom'
-import { UserEmailContext } from "./UserEmailProvider";
+import { UserEmailContext } from "../component/UserEmailProvider.jsx";
 
 const Navbar = ({toggleFunction}) => {
   const {isLoggedIn, setIsLoggedIn} = toggleFunction; 

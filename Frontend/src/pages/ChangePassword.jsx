@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserEmailContext } from "../component/UserEmailProvider";
+import { UserEmailContext } from "../component/UserEmailProvider.jsx";
 
 const ChangePassword = () => {
   const { userEmail, setUserEmail } = useContext(UserEmailContext);

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { UserEmailContext } from "../component/UserEmailProvider";
+import { UserEmailContext } from "../component/UserEmailProvider.jsx";
 
 const VerifyEmail = () => {
   const [email, setEmail] = useState("");
