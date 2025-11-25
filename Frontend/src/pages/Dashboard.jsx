@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { UserEmailContext } from "../component/UserEmailProvider.jsx";
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);
@@ -19,8 +20,13 @@ const Dashboard = () => {
 
         if (res.data.success) {
           setUser(res.data.user);
+          setUserMe(res.data.user);
+          setLoggedIn(true);
         } else {
           navigate("/");
+          setLoggedIn(false);
+          setUserMe(null);
+          setUserEmail('');
         }
       } catch (error) {
         console.error("Authentication failed:", error);
