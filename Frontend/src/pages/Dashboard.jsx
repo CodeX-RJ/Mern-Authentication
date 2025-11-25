@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import jwtDecode from "jwt-decode";
 import axios from "axios";
 
 const Dashboard = () => {
-  const [user, setUser] = useState({ name: "", email: "" });
+  const [user, setUser] = useState({ name: "", email: "", isEmailVerified: false });
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -45,9 +44,17 @@ const Dashboard = () => {
           You are logged in successfully!
         </p>
 
-        <div className="bg-gray-100 border border-gray-300 rounded-lg p-4 mb-5">
-          <p className="text-gray-700"><b>Email:</b> {user.email}</p>
-          <p className="text-green-600 font-semibold mt-1">✔ Verified Account</p>
+        <div className="bg-gray-100 border border-gray-300 rounded-lg p-4 mb-5 text-left">
+          <p className="text-gray-700 text-lg"><b>Name:</b> {user.name}</p>
+          <p className="text-gray-700 text-lg mt-1"><b>Email:</b> {user.email}</p>
+          <p className="text-lg mt-1">
+            <b>Status:</b> 
+            {user.isEmailVerified ? (
+              <span className="text-green-600 font-semibold"> ✔ Verified</span>
+            ) : (
+              <span className="text-red-600 font-semibold"> ✖ Not Verified</span>
+            )}
+          </p>
         </div>
 
         <div className="flex flex-col gap-3">
