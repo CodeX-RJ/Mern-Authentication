@@ -1,11 +1,13 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { UserEmailContext } from "../component/UserEmailProvider.jsx";
 
 const Login = ({ toggleFunction }) => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { userEmail, setUserEmail, loggedIn, setLoggedIn, userMe, setUserMe } = useContext(UserEmailContext);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -22,7 +24,7 @@ const Login = ({ toggleFunction }) => {
       );
       alert(res.data.message);
 
-      if (res.data.success) navigate("/dashboard"); 
+      if (res.data.success){ setLoggedIn(true); navigate("/dashboard");}  
     } catch (error) {
       console.log(error);
       alert("Login failed. Please try again.");
