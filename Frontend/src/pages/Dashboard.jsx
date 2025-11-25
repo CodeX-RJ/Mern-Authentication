@@ -3,14 +3,14 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 // ------------------------------------------
-// 🚀 Dashboard Component
+// 🚀 Dashboard Component (Hero Style)
 // ------------------------------------------
 const Dashboard = () => {
-  const [user, setUser] = useState(null); // Initialize as null to manage loading state
+  const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
-  // --- Fetch User Data on Load ---
+  // --- Fetch User Data on Load (Unchanged) ---
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -21,35 +21,29 @@ const Dashboard = () => {
         if (res.data.success) {
           setUser(res.data.user);
         } else {
-          // If the server returns success: false, navigate away
           navigate("/");
         }
       } catch (error) {
-        // If the request fails (e.g., 401 Unauthorized), log the error and navigate away
         console.error("Authentication check failed:", error);
         navigate("/");
       } finally {
-        setIsLoading(false); // Stop loading regardless of success or failure
+        setIsLoading(false);
       }
     };
 
     fetchUser();
   }, [navigate]);
 
-  // --- Handle Logout with Confirmation ---
+  // --- Handle Logout with Confirmation (Unchanged) ---
   const handleLogout = async () => {
-    // 1. Set alert/confirmation
     const isConfirmed = window.confirm("Are you sure you want to log out?");
 
     if (isConfirmed) {
       try {
-        // You might want to show a small local loader here if the request takes time
         await axios.post("https://rj-mern-authentication.onrender.com/api/auth/logout", {}, { withCredentials: true });
-        
       } catch (error) {
         console.error("Logout failed:", error);
       } finally {
-        // 2. Navigate away regardless of success/fail (assuming server will clear cookie)
         navigate("/");
       }
     }
@@ -58,7 +52,6 @@ const Dashboard = () => {
   // --- Render Logic ---
 
   if (isLoading) {
-    // Show a professional loader while data is being fetched
     return (
       <div className="flex items-center justify-center min-h-screen bg-gray-50">
         <div className="text-xl font-semibold text-indigo-600 animate-pulse">Loading User Data...</div>
@@ -66,28 +59,26 @@ const Dashboard = () => {
     );
   }
 
-  // If user is null (and not loading), it means navigation to '/' already happened
-  // This check is mainly for TypeScript/best practice, though the useEffect handles navigation.
-  if (!user) return null; 
+  if (!user) return null;
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       
-      {/* 🚀 Header */}
-      <header className="bg-white shadow-md border-b border-gray-200">
+      {/* 🚀 Header (Remains) */}
+      <header className="bg-white shadow-lg border-b border-gray-200 sticky top-0 z-10">
         <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-900">
-            Secure Dashboard
+          <h1 className="text-2xl font-extrabold text-indigo-800 tracking-tight">
+            SECURE ACCESS PORTAL
           </h1>
           <div className="flex space-x-3">
             <button
-              className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 transition"
+              className="px-4 py-2 text-sm font-medium text-indigo-700 border border-indigo-700 bg-white rounded-md hover:bg-indigo-50 transition"
               onClick={() => navigate("/change-password")}
             >
               Change Password
             </button>
             <button
-              className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700 transition"
+              className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700 transition shadow-md"
               onClick={handleLogout}
             >
               Logout
@@ -96,46 +87,64 @@ const Dashboard = () => {
         </div>
       </header>
 
-      {/* 💻 Main Content */}
-      <main className="flex-grow">
-        <div className="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+      {/* 🌟 Hero Main Content Area */}
+      {/* min-h-[calc(100vh-68px)] ensures it covers the viewport height minus the header height */}
+      <main className="flex-grow flex items-center bg-white" style={{ minHeight: 'calc(100vh - 68px)' }}>
+        
+        {/* Full-width container replacing the centered card */}
+        <div className="w-full max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
           
-          {/* Welcome Card */}
-          <div className="bg-white overflow-hidden shadow-lg rounded-xl p-8 border border-indigo-200">
-            <h2 className="text-3xl font-extrabold text-indigo-700 mb-2">
-              Welcome, {user.name}!
-            </h2>
-            <p className="text-lg text-gray-600">
-              Your secure profile details are listed below.
+          {/* Hero Content Block */}
+          <div className="border-l-4 border-indigo-500 pl-6 mb-12">
+            <p className="text-xl font-semibold text-gray-500">
+              User Profile
             </p>
+            <h2 className="text-6xl font-extrabold tracking-tight text-gray-900 mt-2">
+              Welcome, <span className="text-indigo-600">{user.name}</span>
+            </h2>
+          </div>
+          
+          {/* Details Section - Organized and Full-Width */}
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            {/* Detail Block 1: Email */}
+            <div className="bg-gray-50 p-6 rounded-lg shadow-lg border-t-4 border-indigo-500">
+              <p className="text-sm font-medium text-indigo-700 uppercase">Email Address</p>
+              <p className="text-2xl text-gray-900 mt-2 font-bold">{user.email}</p>
+              <p className="text-sm text-gray-500 mt-1">Your primary contact method.</p>
+            </div>
 
-            <div className="mt-8 space-y-4">
-              {/* Profile Details Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="p-4 bg-indigo-50 rounded-lg">
-                  <p className="text-sm font-medium text-indigo-600">Name</p>
-                  <p className="text-xl text-gray-900 mt-1">{user.name}</p>
-                </div>
-                <div className="p-4 bg-indigo-50 rounded-lg">
-                  <p className="text-sm font-medium text-indigo-600">Email Address</p>
-                  <p className="text-xl text-gray-900 mt-1">{user.email}</p>
-                </div>
-              </div>
-
-              {/* Verification Status */}
-              <div className="p-4 bg-white border border-gray-300 rounded-lg flex items-center justify-between">
-                <span className="text-md font-medium text-gray-700">Email Verification Status:</span>
+            {/* Detail Block 2: Verification Status */}
+            <div className="bg-gray-50 p-6 rounded-lg shadow-lg border-t-4 border-indigo-500">
+              <p className="text-sm font-medium text-indigo-700 uppercase">Verification Status</p>
+              <div className="mt-2">
                 {user.isEmailVerified ? (
-                  <span className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-semibold bg-green-100 text-green-800">
-                    <span className="mr-1">✔</span> Verified
+                  <span className="inline-flex items-center px-4 py-1.5 text-lg font-bold bg-green-100 text-green-800 rounded-lg shadow">
+                    <span className="mr-2">✔</span> Verified
                   </span>
                 ) : (
-                  <span className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-semibold bg-red-100 text-red-800">
-                    <span className="mr-1">✖</span> Not Verified
+                  <span className="inline-flex items-center px-4 py-1.5 text-lg font-bold bg-red-100 text-red-800 rounded-lg shadow">
+                    <span className="mr-2">✖</span> Not Verified
                   </span>
                 )}
               </div>
+              <p className="text-sm text-gray-500 mt-2">Ensures secure account access.</p>
             </div>
+
+            {/* Detail Block 3: Action Placeholder */}
+            <div className="bg-gray-50 p-6 rounded-lg shadow-lg border-t-4 border-indigo-500 flex flex-col justify-between">
+              <div>
+                <p className="text-sm font-medium text-indigo-700 uppercase">Account Management</p>
+                <p className="text-lg text-gray-800 mt-2">Manage your credentials securely.</p>
+              </div>
+              <button
+                className="mt-4 w-full px-4 py-2 text-md font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-700 transition shadow-md"
+                onClick={() => navigate("/change-password")}
+              >
+                Go to Security Settings
+              </button>
+            </div>
+            
           </div>
           
         </div>
