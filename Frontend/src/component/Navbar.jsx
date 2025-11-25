@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { LogIn, UserPlus, Menu, X, Home } from "lucide-react";
 import {Link} from 'react-router-dom'
+import { UserEmailContext } from "./UserEmailProvider";
 
 const Navbar = ({toggleFunction}) => {
   const {isLoggedIn, setIsLoggedIn} = toggleFunction; 
   const [isOpen, setIsOpen] = useState(false);
-
+  const { userEmail, setUserEmail, loggedIn, setLoggedIn, userMe, setUserMe } = useContext(UserEmailContext);
   return (
     <nav className="bg-white shadow-md fixed top-0 left-0 w-full z-50">
-      <div className="max-w-6xl mx-auto px-6 py-3 flex justify-between items-center">
+      {loggedIn? <div> 
+        
+        <div className="max-w-6xl mx-auto px-6 py-3 flex justify-between items-center">
         {/* Logo / Brand */}
         <h1 className="text-2xl font-bold text-blue-600">MERN Auth</h1>
 
@@ -19,9 +22,6 @@ const Navbar = ({toggleFunction}) => {
           </Link>
           <button className="flex items-center gap-1 text-gray-700 hover:text-blue-600 transition" onClick={()=>setIsLoggedIn(true)}>
             <LogIn size={18} /> <span>Login</span>
-          </button>
-          <button className="flex items-center gap-1 text-gray-700 hover:text-blue-600 transition" onClick={()=>setIsLoggedIn(false)  }>
-            <UserPlus size={18} /> <span>Register</span>
           </button>
         </div>
 
@@ -59,6 +59,14 @@ const Navbar = ({toggleFunction}) => {
           </a>
         </div>
       )}
+
+
+      </div> 
+      : 
+      <div>
+      </div>
+      }
+      
     </nav>
   );
 };

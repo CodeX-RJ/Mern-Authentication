@@ -13,7 +13,7 @@ import Dashboard from './pages/Dashboard.jsx'
 
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
 
   return (
