@@ -8,7 +8,7 @@ export const UserEmailProvider = ({ children }) => {
   const [userMe, setUserMe] = useState(null);
 
   return (
-    <UserEmailContext.Provider value={{ userEmail, setUserEmail, loggedIn, setLoggedIn }}>
+    <UserEmailContext.Provider value={{ userEmail, setUserEmail, loggedIn, setLoggedIn, userMe, setUserMe }}>
       {children}
     </UserEmailContext.Provider>
   );
