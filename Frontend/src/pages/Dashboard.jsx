@@ -118,7 +118,7 @@ const Dashboard = () => {
             <div className="bg-gray-50 p-6 rounded-lg shadow-lg border-t-4 border-indigo-500">
               <p className="text-sm font-medium text-indigo-700 uppercase">Verification Status</p>
               <div className="mt-2">
-                {user.isEmailVerified ? (
+                {user.isVerified ? (
                   <span className="inline-flex items-center px-4 py-1.5 text-lg font-bold bg-green-100 text-green-800 rounded-lg shadow">
                     <span className="mr-2">✔</span> Verified
                   </span>
