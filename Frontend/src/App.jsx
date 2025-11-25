@@ -8,6 +8,7 @@ import ForgetPassword from './pages/ForgetPassowrd.jsx'
 import VerifyOtpToResetPassword from './pages/VerifyOtpToResetPassword.jsx'
 import ChangePassword from './pages/ChangePassword.jsx'
 import Navbar from './component/Navbar.jsx'
+import Dashboard from './pages/Dashboard.jsx'
 
 
 
@@ -25,6 +26,7 @@ const App = () => {
         <Route path='/send-reset-password-otp' element={<ForgetPassword/>}/>
         <Route path='/verify-otp-password-reset' element={<VerifyOtpToResetPassword/>}/>
         <Route path='/change-password' element={<ChangePassword/>}/>
+        <Route path='/dashboard' element={<Dashboard/>}/>
       </Routes>
      </>
      

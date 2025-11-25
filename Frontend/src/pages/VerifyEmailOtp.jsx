@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useContext, useRef } from "react";
 import { UserEmailContext } from "../component/UserEmailProvider";
+import { useNavigate } from "react-router-dom";
 
 const VerifyEmailOtp = () => {
   const [otp, setOtp] = useState(new Array(6).fill(""));
@@ -8,6 +9,7 @@ const VerifyEmailOtp = () => {
 
   const { userEmail } = useContext(UserEmailContext);
   const inputRefs = useRef([]);
+  const navigate = useNavigate();
 
   const changeHandler = (e, index) => {
     const value = e.target.value;
@@ -39,6 +41,7 @@ const VerifyEmailOtp = () => {
       );
 
       alert(res.data.message);
+      if (res.data.success) navigate("/dashboard");
     } catch (error) {
       console.log(error);
       alert("Something went wrong");

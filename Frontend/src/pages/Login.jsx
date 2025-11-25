@@ -22,7 +22,7 @@ const Login = ({ toggleFunction }) => {
       );
       alert(res.data.message);
 
-      if (res.data.success) navigate("/dashboard"); // optional next page
+      if (res.data.success) navigate("/dashboard"); 
     } catch (error) {
       console.log(error);
       alert("Login failed. Please try again.");

@@ -8,6 +8,7 @@ import {
   resetPassword,
   sendEmailVerificationOtp,
 } from '../controllers/authControllers.js';
+import { jwtTokenVerification } from '../middlwares/jwtTokenVerficaiton.js';
 
 
 const authRoutes = express.Router();
@@ -33,5 +34,9 @@ authRoutes.post('/reset-password', resetPassword);
 // Send verification OTP again
 authRoutes.post('/verify-email-existing-user', sendEmailVerificationOtp);
 
+//get user after login 
+authRoutes.get('/me', jwtTokenVerification, (req, res) => {
+  res.status(200).json({ success: true, user: req.user });
+});
 
 export default authRoutes;
