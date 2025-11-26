@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { UserEmailContext } from "../component/UserEmailProvider.jsx";
 
 const ChangePassword = () => {
-  const { userEmail, setUserEmail } = useContext(UserEmailContext);
+  const { userEmail, setUserEmail, userMe,  } = useContext(UserEmailContext);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);

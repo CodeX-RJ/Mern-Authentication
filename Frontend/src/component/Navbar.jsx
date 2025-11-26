@@ -123,7 +123,7 @@ const Navbar = ({ toggleFunction }) => {
             <h1 className="text-2xl font-bold text-blue-600">MERN Auth</h1>
 
             <div className="hidden md:flex items-center gap-6">
-              <Link to="/login">
+              <Link to="/">
                 <button className="flex items-center gap-1 text-gray-700 hover:text-blue-600 transition">
                   <LogIn size={18} /> <span>Login</span>
                 </button>

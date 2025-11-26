@@ -8,7 +8,7 @@ const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const navigate = useNavigate();
-  const { setUserEmail, setLoggedIn, setUserMe } = useContext(UserEmailContext);
+  const { setUserEmail, setLoggedIn, userMe, setUserMe } = useContext(UserEmailContext);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -22,6 +22,7 @@ const Dashboard = () => {
           setUser(res.data.user);
           setUserMe(res.data.user);
           setLoggedIn(true);
+          setUserEmail(res.data.user.email);
         } else {
           navigate("/");
           setLoggedIn(false);
